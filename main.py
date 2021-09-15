@@ -5,7 +5,7 @@ from rich.console import Console
 from config import *
 
 console = Console()
-
+data_base = []
 pos = input('What position did you play? ')
 
 headers = {
@@ -145,6 +145,19 @@ def get_data():
             'friends count': my_stack
         }
     )
+
+    data_base.append(
+        {
+            'date': normal_date,
+            'friends count': my_stack,
+            'k/d/a': kda,
+            'kr': kr,
+            'hs %': hsp,
+            'map': map_csgo,
+            'position': pos,
+            'new elo': elo
+        }
+    )
         
 
 
@@ -154,6 +167,8 @@ def get_data():
 
     with open(f'log/data_{cur_time}.json', 'a') as f:
         json.dump(data_list, f, indent=4, ensure_ascii=False, default=str)
+    with open('log/data.json', 'w') as f:
+        json.dump(data_base, f, indent=4, ensure_ascii=False, default=str)
 
 
 def main():
