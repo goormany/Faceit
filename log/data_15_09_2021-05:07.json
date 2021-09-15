@@ -1,0 +1,41 @@
+[
+    {
+        "date": "2021-09-14 22:44:01",
+        "map": "de_ancient",
+        "Match outcome": "Defeat",
+        "region": "EU",
+        "score": "10 / 16",
+        "sum_rounds": "26",
+        "BO": "2",
+        "new elo": "1773",
+        "roomID": "1-c1db2679-bb3f-4958-9b42-e012d12fe3d1"
+    },
+    {
+        "nickname": [
+            "BLVCK7"
+        ],
+        "kill": [
+            "15"
+        ],
+        "assists": [
+            "1"
+        ],
+        "death": [
+            "18"
+        ],
+        "k/r": [
+            "0.58"
+        ],
+        "k/d": [
+            "0.83"
+        ],
+        "k/d/a": "15/18/1",
+        "hs count": [
+            "7"
+        ],
+        "hs %": [
+            "47"
+        ],
+        "position": "mid"
+    }
+]
