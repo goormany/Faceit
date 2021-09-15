@@ -3,6 +3,8 @@ import datetime
 import json
 from rich.console import Console
 from config import *
+import csv
+import os
 
 console = Console()
 data_base = []
@@ -129,11 +131,11 @@ def get_data():
                     'kill': kill,
                     'assists': assists,
                     'death': death,
-                    'k/r': kr,
+                    'k/r': kr[0],
                     'k/d': kd,
                     'k/d/a': kda,
                     'hs count': hs,
-                    'hs %': hsp,
+                    'hs %': hsp[0],
                     'position': pos,
                     }
                 )
@@ -149,13 +151,13 @@ def get_data():
     data_base.append(
         {
             'date': normal_date,
-            'friends count': my_stack,
-            'k/d/a': kda,
-            'kr': kr,
-            'hs %': hsp,
             'map': map_csgo,
+            'new elo': elo,
+            'k/d': kd,
+            'k/d/a': kda,
+            'hs %': hsp,
             'position': pos,
-            'new elo': elo
+            'friends count': my_stack,
         }
     )
         
@@ -164,11 +166,31 @@ def get_data():
     console.print(f'[bold blue][INFO][/] [bold green]SUCCESS!!![/] [bold blue][INFO][/]')
     cur_time = datetime.datetime.now().strftime("%d_%m_%Y-%H:%M")
 
-
+    if os.path.exists('log/'):
+        os.path.isdir('log/')
+    else:
+        os.mkdir('log/')
     with open(f'log/data_{cur_time}.json', 'a') as f:
         json.dump(data_list, f, indent=4, ensure_ascii=False, default=str)
     with open('log/data.json', 'w') as f:
         json.dump(data_base, f, indent=4, ensure_ascii=False, default=str)
+    
+    if os.path.exists('data.csv'):
+        pass
+
+    else:
+        with open('data.csv', 'w') as f: #, encoding='cp1251'
+            writer = csv.writer(f)
+            writer.writerow(
+                ('Дата', 'карта', 'исход матча', 'счет', 'нью эло', 'кд', 'кда', 'хс%', 'позиция', 'фриендс каунт')
+            )
+    
+    with open('data.csv', 'a') as f: #, encoding='cp1251'
+            writer = csv.writer(f)
+            writer.writerow(
+                [normal_date, map_csgo, win_or_lose, score, elo, kd[0], kda, hsp[0], pos, my_stack]
+            )
+
 
 
 def main():
